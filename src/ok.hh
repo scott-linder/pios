@@ -3,6 +3,6 @@
 
 void okLightOn();
 void okLightOff();
-void delay(int);
+void delay(unsigned long);
 
 #endif /* OK_H */
