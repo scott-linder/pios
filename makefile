@@ -5,7 +5,11 @@
 # # #
 
 # RPi toolchain from https://github.com/raspberrypi/tools
-CC = arm-bcm2708hardfp-linux-gnueabi
+TC = arm-bcm2708hardfp-linux-gnueabi
+
+AS_FLAGS =
+CC_FLAGS = -std=c99 -ffreestanding -O2 -Wall -Wextra -Werror
+CXX_FLAGS = -std=c++11 -ffreestanding -O2 -Wall -Wextra -Werror
 
 # To keep things tidy
 IN = src/
@@ -30,20 +34,22 @@ all: $(IMG)
 # Image is a binary copy of the ELF object (the ELF container makes no sense in
 # this context)
 $(IMG): $(ELF)
-	$(CC)-objcopy $(ELF) -O binary $(IMG)
+	$(TC)-objcopy $(ELF) -O binary $(IMG)
 	# For debugging purposes, also dump assembly to a file
-	$(CC)-objdump -d $(ELF) > $(ASM)
+	$(TC)-objdump -d $(ELF) > $(ASM)
 
 # Create the ELF with our linker script and without shared libraries
 $(ELF): $(OBJS) $(LDS)
-	$(CC)-ld -T $(LDS) -static -o $(ELF) $(OBJS)
+	$(TC)-ld -T $(LDS) -static -o $(ELF) $(OBJS)
 
-# So far we have only written in C and ASM
+$(OUT)%.o: $(IN)%.cc
+	$(TC)-g++ $(CXX_FLAGS) -c -I $(IN) -o $@ $<
+
 $(OUT)%.o: $(IN)%.c
-	$(CC)-gcc -c -nostdlib -I $(IN) -o $@ $<
+	$(TC)-gcc $(CC_FLAGS) -c -I $(IN) -o $@ $<
 
 $(OUT)%.o: $(IN)%.s
-	$(CC)-as -I $(IN) -o $@ $<
+	$(TC)-as $(AS_FLAGS) -I $(IN) -o $@ $<
 
 clean:
 	-rm -f $(OBJS)

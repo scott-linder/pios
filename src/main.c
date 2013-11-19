@@ -10,10 +10,6 @@
 
 #include "ok.h"
 
-void c_delay(unsigned long l) {
-    while(l--);
-}
-
 void start_kernel() {
     for (;;) {
         okLightOff();
