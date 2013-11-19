@@ -51,6 +51,12 @@ $(OUT)%.o: $(IN)%.c
 $(OUT)%.o: $(IN)%.s
 	$(TC)-as $(AS_FLAGS) -I $(IN) -o $@ $<
 
+# Make sure our out directory exists
+$(OBJS): | $(OUT)
+
+$(OUT):
+	test -d $(OUT) || mkdir $(OUT)
+
 clean:
 	-rm -f $(OBJS)
 	-rm -f $(ELF)
