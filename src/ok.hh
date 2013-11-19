@@ -1,5 +1,5 @@
-#ifndef OK_H
-#define OK_H
+#ifndef OK_HH
+#define OK_HH
 
 void okLightOn();
 void okLightOff();

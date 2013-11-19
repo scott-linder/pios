@@ -1,5 +1,5 @@
-#ifndef TYPES_H
-#define TYPES_H
+#ifndef TYPES_HH
+#define TYPES_HH
 
 #include <cstdint>
 
