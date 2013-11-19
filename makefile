@@ -59,7 +59,7 @@ $(OUT):
 
 clean:
 	-rm -f $(OBJS)
-	-rmdir $(OUT)
 	-rm -f $(ELF)
+	-rmdir $(OUT)
 	-rm -f $(IMG)
 	-rm -f $(ASM)
