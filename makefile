@@ -9,7 +9,8 @@ TC = arm-bcm2708hardfp-linux-gnueabi
 
 AS_FLAGS =
 CC_FLAGS = -std=c99 -ffreestanding -O2 -Wall -Wextra -Werror
-CXX_FLAGS = -std=c++11 -ffreestanding -O2 -Wall -Wextra -Werror
+CXX_FLAGS = -std=c++11 -ffreestanding -O2 -Wall -Wextra -Werror \
+			-fno-exceptions -fno-rtti
 
 # To keep things tidy
 IN = src/
