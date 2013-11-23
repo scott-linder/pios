@@ -9,13 +9,15 @@
  */
 
 #include "ok.hh"
+#include "timer.hh"
 
 extern "C"
 void start_kernel() {
+    Timer timer;
     for (;;) {
         okLightOff();
-        delay(0x3F0000);
+        timer.wait(1000);
         okLightOn();
-        delay(0x3F0000);
+        timer.wait(1000);
     }
 }

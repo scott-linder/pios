@@ -1,7 +1,8 @@
 #include "types.hh"
+#include "addr.hh"
 #include "ok.hh"
 
-word_t *gpio_controller = (word_t *) 0x20200000;
+auto gpio_controller = 0x20200000_bus;
 
 void okLightOn() {
     gpio_controller[1] = 1 << 18;
