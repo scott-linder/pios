@@ -1,8 +1,12 @@
 #ifndef OK_HH
 #define OK_HH
 
-void okLightOn();
-void okLightOff();
-void delay(unsigned long);
+#include "types.hh"
 
-#endif /* OK_H */
+extern "C" {
+    void okLightOn();
+    void okLightOff();
+    void delay(word_t ms);
+}
+
+#endif /* OK_HH */

@@ -8,9 +8,10 @@
 TC = arm-bcm2708hardfp-linux-gnueabi
 
 AS_FLAGS =
-CC_FLAGS = -std=c99 -nostdlib -ffreestanding -O0 -Wall -Wextra -Werror
-CXX_FLAGS = -std=c++11 -nostdlib -ffreestanding -O0 -Wall -Wextra -Werror \
+CC_FLAGS = -std=c99 -ffreestanding -O0 -Wall -Wextra -Werror
+CXX_FLAGS = -std=c++11 -ffreestanding -O0 -Wall -Wextra -Werror \
 			-fno-exceptions -fno-rtti
+LD_FLAGS = -ffreestanding -O0 -nostdlib -lgcc
 
 # To keep things tidy
 IN = src/
@@ -26,7 +27,7 @@ ASM = kernel.asm
 LDS = kernel.ld
 
 # All objects needed to link full kernel
-OBJS = bootstrap.o ok.o main.o timer.o registers.o
+OBJS = bootstrap.o ok.o led.o main.o
 OBJS := $(addprefix $(OUT), $(OBJS))
 
 # Bare `make` will produce the kernel image
@@ -41,7 +42,7 @@ $(IMG): $(ELF)
 
 # Create the ELF with our linker script and without shared libraries
 $(ELF): $(OBJS) $(LDS)
-	$(TC)-ld -T $(LDS) -static -o $(ELF) $(OBJS)
+	$(TC)-gcc $(LD_FLAGS) -T $(LDS) -o $(ELF) $(OBJS)
 
 $(OUT)%.o: $(IN)%.cc
 	$(TC)-g++ $(CXX_FLAGS) -c -I $(IN) -o $@ $<

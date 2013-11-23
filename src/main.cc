@@ -8,16 +8,15 @@
  *  Scott Linder
  */
 
-#include "ok.hh"
-#include "timer.hh"
+#include "led.hh"
 
 extern "C"
 void start_kernel() {
-    Timer timer;
+    LED ok;
     for (;;) {
-        okLightOff();
-        timer.wait(1000);
-        okLightOn();
-        timer.wait(1000);
+        ok.on();
+        ok.wait(0x3f0000);
+        ok.off();
+        ok.wait(0x3f0000);
     }
 }

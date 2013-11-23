@@ -35,6 +35,11 @@ SECTIONS {
         *(.data)
     }
 
+    .bss : {
+        *(COMMON)
+        *(.bss)
+    }
+
     /DISCARD/ : {
         *(*)
     }
