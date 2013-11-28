@@ -27,7 +27,7 @@ auto words(size_t bytes) -> size_t {
  * Convert a word count into a byte count.
  */
 constexpr
-auto bytes(size_t words) -> const size_t {
+auto bytes(size_t words) -> size_t {
     return words * sizeof(word_t);
 }
 
