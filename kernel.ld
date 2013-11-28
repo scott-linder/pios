@@ -16,7 +16,7 @@ ENTRY(_start)
 SECTIONS {
 
     . = 0;
-    .init 0x0000 : {
+    .init : {
         *(.init)
     }
 
@@ -25,6 +25,10 @@ SECTIONS {
     .text 0x8000 : {
         *(.text)
         *(.text.*)
+    }
+
+    .bootstack : {
+        *(.bootstack)
     }
 
     .rodata : {

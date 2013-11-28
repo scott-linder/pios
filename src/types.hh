@@ -12,4 +12,5 @@ typedef std::uint32_t word_t;
  */
 typedef volatile word_t reg_t;
 
-#endif /* TYPES_H */
+#endif /* TYPES_HH */
+

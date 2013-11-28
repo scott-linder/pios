@@ -13,7 +13,7 @@
 extern "C"
 void start_kernel() {
     LED ok;
-    for (;;) {
+    while (1) {
         ok.on();
         ok.wait(0x3f0000);
         ok.off();
