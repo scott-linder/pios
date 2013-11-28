@@ -57,11 +57,11 @@ $(OUT)%.o: $(IN)%.s
 $(OBJS): | $(OUT)
 
 $(OUT):
-	test -d $(OUT) || mkdir $(OUT)
+	[ -d $(OUT) ] || mkdir $(OUT)
 
 clean:
 	-rm -f $(OBJS)
 	-rm -f $(ELF)
-	-rmdir $(OUT)
+	-[ ! -d $(OUT) ] || rmdir $(OUT)
 	-rm -f $(IMG)
 	-rm -f $(ASM)
