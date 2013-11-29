@@ -8,16 +8,16 @@
 class Timer {
     public:
         /** Blocking wait. */
-        void wait(unsigned int ms);
+        void wait(unsigned int usecs);
     private:
-        static Registers regs;
+        Registers regs{0x7E003000_bus};
         static const auto
             kControlAndStatus = words(0x00_bytes),
             kCounterLower = words(0x04_bytes),
             kCounterHigher = words(0x08_bytes),
-            kCompare0 = words(0x0c_bytes),
+            kCompare0 = words(0x0c_bytes), /* DO NOT USE: GPU only */
             kCompare1 = words(0x10_bytes),
-            kCompare2 = words(0x14_bytes),
+            kCompare2 = words(0x14_bytes), /* DO NOT USE: GPU only */
             kCompare3 = words(0x18_bytes);
 };
 

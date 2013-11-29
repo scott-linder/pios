@@ -9,16 +9,17 @@
 #include "addr.hh"
 #include "timer.hh"
 
-Registers Timer::regs{0x7E003000_phys};
-
 /**
  * Blocking wait for a provided number of milliseconds.
  *
- * XXX: currently only a testing implementation
  */
-void Timer::wait(unsigned int ms) {
+void Timer::wait(unsigned int usecs) {
+    auto delta = 0U;
     auto start = regs.read(kCounterLower);
     /* Spin until the time is up */
-    while ((regs.read(kCounterLower) - start) < ms);
+    while (delta < usecs) {
+        auto current = regs.read(kCounterLower);
+        delta = current - start;
+    }
 }
 
