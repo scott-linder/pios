@@ -9,15 +9,7 @@
 #include "addr.hh"
 #include "timer.hh"
 
-enum Timer::Register : size_t {
-    ControlAndStatus = words(0x00),
-    CounterLower = words(0x04),
-    CounterHigher = words(0x08),
-    Compare0 = words(0x0c),
-    Compare1 = words(0x10),
-    Compare2 = words(0x14),
-    Compare3 = words(0x18)
-};
+Registers Timer::regs{0x7E003000_phys};
 
 /**
  * Blocking wait for a provided number of milliseconds.
@@ -25,8 +17,8 @@ enum Timer::Register : size_t {
  * XXX: currently only a testing implementation
  */
 void Timer::wait(unsigned int ms) {
-    auto start = regs.read(CounterLower);
+    auto start = regs.read(kCounterLower);
     /* Spin until the time is up */
-    while ((regs.read(CounterLower) - start) < ms);
+    while ((regs.read(kCounterLower) - start) < ms);
 }
 
