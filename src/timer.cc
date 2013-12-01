@@ -13,7 +13,7 @@
  * Blocking wait for a provided number of milliseconds.
  *
  */
-void Timer::wait(unsigned int usecs) {
+void Timer::wait(usecs_t usecs) {
     auto delta = 0U;
     auto start = regs.read(kCounterLower);
     /* Spin until the time is up */
