@@ -8,17 +8,18 @@
  *  Scott Linder
  */
 
-#include "led.hh"
+#include "ok.hh"
 #include "timer.hh"
 
 extern "C"
 void start_kernel() {
-    LED ok;
+    OK ok;
     Timer timer;
+    const auto kDelay = 40000_usecs;
     while (1) {
         ok.on();
-        timer.wait(0x3f0000);
+        timer.wait(kDelay);
         ok.off();
-        timer.wait(0x3f0000);
+        timer.wait(kDelay);
     }
 }
