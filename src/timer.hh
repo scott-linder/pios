@@ -7,8 +7,8 @@
 
 class Timer {
     public:
+        /** A period of microseconds. */
         typedef unsigned int usecs_t;
-        /** Blocking wait. */
         void wait(usecs_t delay);
     private:
         Registers regs{0x7E003000_bus};
@@ -21,8 +21,10 @@ class Timer {
             kCompare3 = words(0x18_bytes);
 };
 
-constexpr
-Timer::usecs_t operator"" _usecs(unsigned long long usecs) {
+/**
+ * Literal for convenient time literals.
+ */
+constexpr auto operator"" _usecs(unsigned long long usecs) -> Timer::usecs_t {
     return static_cast<Timer::usecs_t>(usecs);
 }
 

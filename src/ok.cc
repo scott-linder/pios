@@ -1,17 +1,19 @@
-/**
+/*
  * Quick wrapper for the OK light.
+ *
+ * Authors:
+ *  Scott Linder
  */
-#include "types.hh"
-#include "addr.hh"
+
 #include "ok.hh"
 
 auto OK::on() -> void {
-    regs.write(kSelect, 1 << 18);
-    regs.write(kPullLow, 1 << 16);
+    regs.write(kSelect1, 1 << 18);
+    regs.write(kClear0, 1 << 16);
 }
 
 auto OK::off() -> void {
-    regs.write(kSelect, 1 << 18);
-    regs.write(kPullHigh, 1 << 16);
+    regs.write(kSelect1, 1 << 18);
+    regs.write(kSet0, 1 << 16);
 }
 

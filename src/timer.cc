@@ -5,15 +5,12 @@
  *  Scott Linder
  */
 
-#include "types.hh"
-#include "addr.hh"
 #include "timer.hh"
 
 /**
- * Blocking wait for a provided number of milliseconds.
- *
+ * Blocking wait for a provided number of microseconds.
  */
-void Timer::wait(usecs_t usecs) {
+auto Timer::wait(usecs_t usecs) -> void {
     auto delta = 0U;
     auto start = regs.read(kCounterLower);
     /* Spin until the time is up */

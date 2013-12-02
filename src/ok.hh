@@ -12,9 +12,9 @@ class OK {
     private:
         Registers regs{0x20200000_phys};
         static const auto
-            kSelect = words(4_bytes),
-            kPullHigh = words(28_bytes),
-            kPullLow = words(40_bytes);
+            kSelect1 = words(0x04_bytes),
+            kSet0 = words(0x1c_bytes),
+            kClear0 = words(0x28_bytes);
 };
 
 #endif /* OK_HH */

@@ -12,7 +12,7 @@
 #include "timer.hh"
 
 extern "C"
-void start_kernel() {
+auto start_kernel() -> void {
     OK ok;
     Timer timer;
     const auto kDelay = 40000_usecs;
