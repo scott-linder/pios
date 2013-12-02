@@ -6,7 +6,7 @@
 
 class MMIO {
     public:
-        MMIO(reg_t *base);
+        MMIO(reg_t *base_);
         auto read(words_t offset) -> word_t;
         auto read(words_t offset, int bit) -> bool; 
         auto read(words_t offset, int bit_from, int bit_to) -> word_t; 
@@ -15,7 +15,7 @@ class MMIO {
         auto write(words_t offset, int bit_from, int bit_to, word_t value)
             -> void; 
     private:
-        reg_t *base;
+        reg_t *base_;
 };
 
 #endif /* MMIO_HH */

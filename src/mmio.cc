@@ -1,15 +1,15 @@
 #include "types.hh"
 #include "mmio.hh"
 
-MMIO::MMIO(reg_t *base)
-    : base(base)
+MMIO::MMIO(reg_t *base_)
+    : base_(base_)
 {}
 
 /**
  * Read a given register in full.
  */
 auto MMIO::read(words_t offset) -> word_t {
-    return static_cast<word_t>(base[offset]);
+    return static_cast<word_t>(base_[offset]);
 }
 
 /**
@@ -32,7 +32,7 @@ auto MMIO::read(words_t offset, int bit_from, int bit_to) -> word_t {
  * Write a given register in full.
  */
 auto MMIO::write(words_t offset, word_t word) -> void {
-    base[offset] = word;
+    base_[offset] = word;
 }
 
 /**
