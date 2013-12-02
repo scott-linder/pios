@@ -1,12 +1,12 @@
-#ifndef REGISTERS_HH
-#define REGISTERS_HH
+#ifndef MMIO_HH
+#define MMIO_HH
 
 #include "types.hh"
 #include "addr.hh"
 
-class Registers {
+class MMIO {
     public:
-        Registers(reg_t *base);
+        MMIO(reg_t *base);
         auto read(words_t offset) -> word_t;
         auto read(words_t offset, int bit) -> bool; 
         auto read(words_t offset, int bit_from, int bit_to) -> word_t; 
@@ -18,5 +18,5 @@ class Registers {
         reg_t *base;
 };
 
-#endif /* REGISTERS_HH */
+#endif /* MMIO_HH */
 

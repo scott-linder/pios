@@ -3,7 +3,7 @@
 
 #include "types.hh"
 #include "addr.hh"
-#include "registers.hh"
+#include "mmio.hh"
 
 class Timer {
     public:
@@ -11,7 +11,7 @@ class Timer {
         typedef unsigned int usecs_t;
         void wait(usecs_t delay);
     private:
-        Registers regs{0x7E003000_bus};
+        MMIO regs{0x7E003000_bus};
         static const auto
             kControlAndStatus = words(0x00_bytes),
             kCounterLower = words(0x04_bytes),
