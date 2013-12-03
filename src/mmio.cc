@@ -1,8 +1,8 @@
 #include "types.hh"
 #include "mmio.hh"
 
-MMIO::MMIO(reg_t *base_)
-    : base_(base_)
+MMIO::MMIO(reg_t *base)
+    : base_(base)
 {}
 
 /**
