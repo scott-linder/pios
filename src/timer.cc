@@ -10,11 +10,11 @@
 /**
  * Blocking wait for a provided number of microseconds.
  */
-auto Timer::wait(usecs_t usecs) -> void {
+auto Timer::wait(usecs_t delay) -> void {
     auto delta = 0U;
     auto start = regs.read(kCounterLower);
     /* Spin until the time is up */
-    while (delta < usecs) {
+    while (delta < delay) {
         auto current = regs.read(kCounterLower);
         delta = current - start;
     }
