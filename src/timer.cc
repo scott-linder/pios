@@ -12,10 +12,10 @@
  */
 auto Timer::wait(usecs_t delay) -> void {
     auto delta = 0U;
-    auto start = regs.read(kCounterLower);
+    auto start = regs_.read(kCounterLower);
     /* Spin until the time is up */
     while (delta < delay) {
-        auto current = regs.read(kCounterLower);
+        auto current = regs_.read(kCounterLower);
         delta = current - start;
     }
 }

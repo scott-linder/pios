@@ -10,7 +10,7 @@ class OK {
         auto on() -> void;
         auto off() -> void;
     private:
-        MMIO regs{0x20200000_phys};
+        MMIO regs_{0x20200000_phys};
         static const auto
             kSelect1 = words(0x04_bytes),
             kSet0 = words(0x1c_bytes),

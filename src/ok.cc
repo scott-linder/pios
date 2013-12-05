@@ -8,12 +8,12 @@
 #include "ok.hh"
 
 auto OK::on() -> void {
-    regs.write(kSelect1, 1 << 18);
-    regs.write(kClear0, 1 << 16);
+    regs_.write(kSelect1, 1 << 18);
+    regs_.write(kClear0, 1 << 16);
 }
 
 auto OK::off() -> void {
-    regs.write(kSelect1, 1 << 18);
-    regs.write(kSet0, 1 << 16);
+    regs_.write(kSelect1, 1 << 18);
+    regs_.write(kSet0, 1 << 16);
 }
 

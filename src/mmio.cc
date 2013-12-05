@@ -3,7 +3,7 @@
 #include "mmio.hh"
 
 MMIO::MMIO(reg_t *base)
-    : base(base)
+    : base_(base)
 {}
 
 namespace {
@@ -44,7 +44,7 @@ namespace {
  * Read a given register in full.
  */
 auto MMIO::read(words_t reg) -> word_t {
-    return static_cast<word_t>(base[reg]);
+    return static_cast<word_t>(base_[reg]);
 }
 
 /**
@@ -67,7 +67,7 @@ auto MMIO::read(words_t reg, int bit, size_t len) -> word_t {
  * Write a given register in full.
  */
 auto MMIO::write(words_t reg, word_t word) -> void {
-    base[reg] = word;
+    base_[reg] = word;
 }
 
 /**
