@@ -18,7 +18,7 @@ namespace {
      *  …
      */
     constexpr auto mask(size_t bit) -> word_t {
-        return static_cast<word_t>(1U << bit);
+        return 1U << bit;
     }
 
     /**
@@ -44,7 +44,7 @@ namespace {
  * Read a given register in full.
  */
 auto MMIO::read(words_t reg) -> word_t {
-    return static_cast<word_t>(base_[reg]);
+    return base_[reg];
 }
 
 /**
@@ -52,7 +52,7 @@ auto MMIO::read(words_t reg) -> word_t {
  * XXX: untested
  */
 auto MMIO::read(words_t reg, int bit) -> bool {
-    return static_cast<bool>(read(reg) & (1 << bit));
+    return read(reg) & (1 << bit);
 }
 
 /**
