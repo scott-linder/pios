@@ -1,3 +1,4 @@
+#include <limits>
 #include "types.hh"
 #include "mmio.hh"
 
@@ -16,26 +17,26 @@ namespace {
      *  mask(7) →   10000000
      *  …
      */
-    constexpr auto mask(int bit) -> word_t {
-        return static_cast<word_t>(1 << bit);
+    constexpr auto mask(size_t bit) -> word_t {
+        return static_cast<word_t>(1U << bit);
     }
 
     /**
      * Generate a bitmask with the given range of bits set.
+     *
+     * Ex:
+     *  call        →   MSB  LSB
+     *  mask(0, 0)  →   00000000
+     *  mask(0, 1)  →   00000001
+     *  mask(0, 3)  →   00000111
+     *  mask(3, 4)  →   01111000
+     *  mask(0, 8)  →   11111111
+     *  …
      */
-    constexpr auto mask(int bit, size_t len) -> word_t {
-        /* XXX: Doesn't actually work; implement with the behavior that
-         * the mask has `len` bits set starting at offset `bit`
-         * Ex:
-         *  call        →   MSB  LSB
-         *  mask(0, 0)  →   00000000
-         *  mask(0, 1)  →   00000001
-         *  mask(0, 3)  →   00000111
-         *  mask(3, 4)  →   01111000
-         *  mask(0, 8)  →   11111111
-         *  …
-         */
-        return static_cast<word_t>(((1 << bit) - 1) << len);
+    constexpr auto mask(size_t bit, size_t len) -> word_t {
+        return len >= static_cast<unsigned>(std::numeric_limits<word_t>::digits)
+            ? std::numeric_limits<word_t>::max() << bit
+            : ((1U << len) - 1U) << bit;
     }
 };
 
