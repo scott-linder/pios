@@ -13,12 +13,12 @@ class Timer {
     private:
         MMIO regs_{0x7E003000_bus};
         static const auto
-            kControlAndStatus = words(0x00_bytes),
-            kCounterLower = words(0x04_bytes),
-            kCounterHigher = words(0x08_bytes),
+            kControlAndStatusReg = words(0x00_bytes),
+            kCounterLowerReg = words(0x04_bytes),
+            kCounterHigherReg = words(0x08_bytes),
             /* Other compare registers are used by GPU. */
-            kCompare1 = words(0x10_bytes),
-            kCompare3 = words(0x18_bytes);
+            kCompare1Reg = words(0x10_bytes),
+            kCompare3Reg = words(0x18_bytes);
 };
 
 /**
