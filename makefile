@@ -27,8 +27,9 @@ ASM = kernel.asm
 LDS = kernel.ld
 
 # All objects needed to link full kernel
-OBJS = bootstrap.o ok.o mmio.o timer.o main.o 
+OBJS = bootstrap ok mmio timer uart main 
 OBJS := $(addprefix $(OUT), $(OBJS))
+OBJS := $(addsuffix .o, $(OBJS))
 
 # Bare `make` will produce the kernel image
 all: $(IMG)
