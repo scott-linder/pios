@@ -1,4 +1,8 @@
-# It's an "OS" #
+# pios #
+
+Kernel for RaspberryPi written in C++
+
+## It's an "OS" ##
 
 To say that its an OS is a bit of a stretch at this point. In fact to say
 its a kernel is generous.
