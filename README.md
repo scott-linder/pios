@@ -23,8 +23,8 @@ part of the kernel, however little that is.
 ## Dependencies ##
 
 In order to compile for the RaspberryPi (which is the _only_ target platform)
-you will need the proper GCC/clang toolchain from over at:
-[](https://github.com/raspberrypi/tools.git) That is, you will need
+you will need the proper GCC/clang toolchain from over at
+[raspberrypi/tools](https://github.com/raspberrypi/tools.git). That is, you will need
 arm-bcm2708hardfp-linux-gnueabi/bin/\* in your path.
 
 For obvious reasons the kernel makes limited use (if at all) of the STL.
