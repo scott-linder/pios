@@ -27,7 +27,7 @@ ASM = kernel.asm
 LDS = kernel.ld
 
 # All objects needed to link full kernel
-OBJS = bootstrap ok mmio timer uart main 
+OBJS = bootstrap ok mmio timer main
 OBJS := $(addprefix $(OUT), $(OBJS))
 OBJS := $(addsuffix .o, $(OBJS))
 

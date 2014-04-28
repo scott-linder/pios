@@ -5,15 +5,30 @@
  *  Scott Linder
  */
 
+#include "types.hh"
+#include "mmio.hh"
 #include "ok.hh"
 
-auto OK::on() -> void {
-    regs_.write(kSelect1, 18, true);
-    regs_.write(kClear0, 16, true);
+namespace {
+    constexpr mmio::reg_t
+        kSelect1Reg = 0x20200004_phys,
+        kSet0Reg    = 0x2020001c_phys,
+        kClear0Reg  = 0x20200028_phys;
+    constexpr word_t
+        kSelectOKMask = mmio::mask(18),
+        kSelectOK     = kSelectOKMask,
+        kSetOKMask    = mmio::mask(16),
+        kSetOK        = kSetOKMask;
 }
 
-auto OK::off() -> void {
-    regs_.write(kSelect1, 18, true);
-    regs_.write(kSet0, 16, true);
-}
+namespace ok {
+    auto on() -> void {
+        mmio::write(kSelect1Reg, kSelectOK, kSelectOKMask);
+        mmio::write(kClear0Reg, kSetOK, kSetOKMask);
+    }
 
+    auto off() -> void {
+        mmio::write(kSelect1Reg, kSelectOK, kSelectOKMask);
+        mmio::write(kSet0Reg, kSetOK, kSetOKMask);
+    }
+}

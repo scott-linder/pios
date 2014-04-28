@@ -13,13 +13,11 @@
 
 extern "C"
 auto start_kernel() -> void {
-    OK ok;
-    Timer timer;
-    const auto kDelay = 40000_usecs;
-    while (1) {
-        ok.on();
-        timer.wait(kDelay);
-        ok.off();
-        timer.wait(kDelay);
+    constexpr auto delay = 40000_usecs;
+    for (;;) {
+        ok::on();
+        timer::wait(delay);
+        ok::off();
+        timer::wait(delay);
     }
 }
