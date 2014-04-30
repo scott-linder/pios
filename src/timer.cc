@@ -19,8 +19,7 @@ namespace {
         kCompare3Reg            = 0x7E003018_bus;
     constexpr word_t
         kCompare1Mask      = mmio::mask(1),
-        kCompare1          = kCompare1Mask,
-        kCompare1Reset     = ~kCompare1Mask;
+        kCompare1Reset     = kCompare1Mask;
 }
 
 namespace timer {
