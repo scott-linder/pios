@@ -15,18 +15,27 @@ namespace {
         kCounterHighReg         = 0x7E003008_bus,
         kCompare1Reg            = 0x7E003010_bus,
         /* Compare2Reg reserved by GPU */
-        kCompare3Reg            = 0x7E003018_bus;
+        kCompare3Reg            = 0x7E003018_bus,
         /* Compare3Reg reserved by GPU */
+        kCompare1ResetMask      = mmio::mask(1),
+        kCompare1Reset          = kCompare1ResetMask;
 }
 
 namespace timer {
     auto wait(usecs_t delay) -> void {
-        auto delta = 0U;
-        auto start = mmio::read(kCounterLowReg);
-        /* Spin until the time is up */
-        while (delta < delay) {
-            auto current = mmio::read(kCounterLowReg);
-            delta = current - start;
-        }
+    /* get current time */
+    auto start = mmio::read(kCounterLowReg);
+    /* compute time to stop */
+    auto stop = start + delay;
+ 
+    /* reset the timer control bit */
+    mmio::write(kControlAndStatusReg, kCompare1RegReset, kCompare1RegResetMask);
+    /* set the timer compare register */
+    mmio::write(kCompare1Reg, stop);
+ 
+    /* Spin until the interrupt fires */
+    while (!(mmio::read(kControlAndStatusReg)) & (1<<(1))) {
+        ;
     }
+}
 }
