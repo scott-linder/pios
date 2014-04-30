@@ -15,8 +15,9 @@ namespace {
         kCounterHighReg         = 0x7E003008_bus,
         kCompare1Reg            = 0x7E003010_bus,
         /* Compare2Reg reserved by GPU */
-        kCompare3Reg            = 0x7E003018_bus,
+        kCompare3Reg            = 0x7E003018_bus;
         /* Compare3Reg reserved by GPU */
+    constexpr word_t
         kCompare1ResetMask      = mmio::mask(1),
         kCompare1Reset          = kCompare1ResetMask;
 }
@@ -29,7 +30,7 @@ namespace timer {
     auto stop = start + delay;
  
     /* reset the timer control bit */
-    mmio::write(kControlAndStatusReg, kCompare1RegReset, kCompare1RegResetMask);
+    mmio::write(kControlAndStatusReg, kCompare1Reset, kCompare1ResetMask);
     /* set the timer compare register */
     mmio::write(kCompare1Reg, stop);
  
