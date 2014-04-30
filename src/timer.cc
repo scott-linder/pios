@@ -3,6 +3,7 @@
  *
  * Authors:
  *  Scott Linder
+ *  Daniel Dyla (dyladan@gmail.com)
  */
 
 #include "mmio.hh"
@@ -28,12 +29,12 @@ namespace timer {
         auto start = mmio::read(kCounterLowReg);
         /* compute time to stop */
         auto stop = start + delay;
-     
+
         /* reset the timer control bit */
         mmio::write(kControlAndStatusReg, kCompare1Reset, kCompare1Mask);
         /* set the timer compare register */
         mmio::write(kCompare1Reg, stop);
-     
+
         /* Spin until the interrupt fires */
         while (!mmio::read(kControlAndStatusReg, kCompare1Mask)) {
             ;
