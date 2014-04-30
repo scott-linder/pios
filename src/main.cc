@@ -13,7 +13,7 @@
 
 extern "C"
 auto start_kernel() -> void {
-    constexpr auto delay = 40000_usecs;
+    constexpr auto delay = 1000000_usecs;
     for (;;) {
         ok::on();
         timer::wait(delay);
